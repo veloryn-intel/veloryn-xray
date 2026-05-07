@@ -12,12 +12,12 @@ It analyzes execution traces to determine:
 
 > X-Ray analyzes execution structure, not semantic correctness.
 >
-> Status: Beta (v0.1)
+> Status: Beta (v0.1.0)
 >
 > Core execution analysis behavior and fail-safe boundaries are stable.
 > Interpretation and visualization layers may evolve across minor versions.
 
-![X-Ray UI](xray/assets/sample-image.png)
+![X-Ray UI](assets/sample-image.png)
 
 ## Why Execution Analysis Exists
 
@@ -85,7 +85,7 @@ The second represents independent topical fragments rather than a continuous exe
 
 Example replay of a real CrewAI multi-agent workflow analyzed through X-Ray.
 
-![CrewAI Output](xray/assets/crewai-example.png)
+![CrewAI Output](assets/crewai-example.png)
 
 ## What X-Ray Does
 
@@ -127,10 +127,10 @@ Examples are stored as replayable execution traces and analyzed locally through 
 
 See:
 
-- [LangChain official examples](xray/examples/langchain_official/)
-- [CrewAI official examples](xray/examples/crewai_official/)
-- [Claude refinement example](xray/examples/claude_refinement/)
-- [Retry loop examples](xray/examples/retry_loops/)
+- [LangChain official examples](examples/langchain_official/)
+- [CrewAI official examples](examples/crewai_official/)
+- [Claude refinement example](examples/claude_refinement/)
+- [Retry loop examples](examples/retry_loops/)
 
 Some live-provider example outputs may drift over time as upstream model behavior changes.
 Committed replay fixtures remain deterministic once captured.
@@ -237,21 +237,21 @@ X-Ray uses no randomness, no embeddings, no semantic model, and no LLM calls.
 
 For the same input and same algorithm versions, output is stable.
 
-See [xray/docs/determinism.md](xray/docs/determinism.md).
+See [docs/determinism.md](docs/determinism.md).
 
 ## Documentation
 
-- [Architecture](xray/docs/architecture.md)
-- [Engine Flow](xray/docs/engine_flow.md)
-- [Execution Validity](xray/docs/execution_validity.md)
-- [Fail-Safe Contract](xray/docs/failsafe_contract.md)
-- [SDK Contract](xray/docs/sdk_contract.md)
-- [Determinism](xray/docs/determinism.md)
-- [Invariants](xray/docs/invariants.md)
-- [Versioning](xray/docs/versioning.md)
-- [Testing](xray/docs/testing.md)
-- [Limitations](xray/docs/limitations.md)
-- [Philosophy](xray/docs/philosophy.md)
+- [Architecture](docs/architecture.md)
+- [Engine Flow](docs/engine_flow.md)
+- [Execution Validity](docs/execution_validity.md)
+- [Fail-Safe Contract](docs/failsafe_contract.md)
+- [SDK Contract](docs/sdk_contract.md)
+- [Determinism](docs/determinism.md)
+- [Invariants](docs/invariants.md)
+- [Versioning](docs/versioning.md)
+- [Testing](docs/testing.md)
+- [Limitations](docs/limitations.md)
+- [Philosophy](docs/philosophy.md)
 
 ---
 
