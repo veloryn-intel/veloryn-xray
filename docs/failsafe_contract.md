@@ -55,9 +55,9 @@ This applies to:
 
 ```bash
 python -m cli.main invalid.json
-python -m cli.main --analysis invalid.json
-python -m cli.main --debug invalid.json
-python -m cli.main --plot invalid.json
+python -m cli.main invalid.json --analysis
+python -m cli.main invalid.json --debug
+python -m cli.main invalid.json --plot
 ```
 
 `--plot` does not save a plot for invalid executions.
