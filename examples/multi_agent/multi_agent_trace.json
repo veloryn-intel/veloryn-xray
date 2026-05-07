@@ -1,0 +1,47 @@
+[
+    {
+        "example": "multi_agent_redundancy",
+        "provider": "OpenAI",
+        "model": "gpt-4o-mini",
+        "source_fixture": "tests/real_scenarios/outputs/multi_agent_loop_raw.json",
+        "workflow_prompt": "Solve: How to improve customer retention?",
+        "steps": [
+            {
+                "step": 1,
+                "role": "planner",
+                "prompt": "You are a planner. Break problem into steps.",
+                "output": "Improving customer retention is a multi-faceted process that involves understanding customer needs, enhancing product offerings, and creating a positive customer experience. Here’s a step-by-step breakdown of how to achieve this:\n\n### Step 1: Understand Customer Needs\n1. **Gather Feedback**: Use surveys, interviews, and feedback forms to understand what customers value.\n2. **Analyze Data**: Study customer purchase behavior and patterns to identify trends and preferences.\n3. **Segment Customers**: Divide customers into groups based on behavior, preferences, or demographics.\n\n### Step 2: Enhance Customer Experience\n1. **Improve Customer Service**: Train staff in customer service skills and ensure prompt responses to inquiries.\n2. **Personalize Interactions**: Use customer data to personalize marketing and communication.\n3. **Create a Seamless Experience**: Ensure an easy and intuitive navigation across all channels (online and offline).\n\n### Step 3: Build Community and Engagement\n1. **Loyalty Programs**:"
+            },
+            {
+                "step": 2,
+                "role": "executor",
+                "prompt": "You are an executor. Execute the plan.",
+                "output": "Implement loyalty programs that reward repeat customers with points, discounts, or exclusive offers.\n2. **Engage on Social Media**: Actively interact with customers on social platforms, responding to comments and messages promptly.\n3. **Host Events**: Organize events or webinars to foster community and deepen relationships with customers.\n\n### Step 4: Regularly Evaluate and Adapt\n1. **Monitor Metrics**: Track customer retention rates, Net Promoter Scores (NPS), and other relevant KPIs to continuously assess performance.\n2. **Iterate Based on Feedback**: Use customer feedback to make iterative improvements to both products and services.\n3. **Stay Updated on Trends**: Keep an eye on industry trends to adapt offerings and customer engagement strategies accordingly.\n\n### Step 5: Communicate Value\n1. **Consistent Messaging**: Regularly share updates on your products, services, and any improvements you’ve made based on customer feedback.\n2. **Highlight Success Stories**: Share testimonials and"
+            },
+            {
+                "step": 3,
+                "role": "reviewer",
+                "prompt": "You are a reviewer. Suggest improvements.",
+                "output": "Your outline effectively covers strategies for enhancing customer loyalty and engagement. Here are some suggestions for improving the clarity and impact of your plan:\n\n### Step 1: Implement Loyalty Programs\n1. **Diverse Reward Structure**: Consider offering a tiered loyalty program where customers can unlock different levels of rewards based on their spending (e.g., silver, gold, platinum). This encourages higher spending and long-term loyalty.\n2. **Gamification**: Incorporate gamified elements, such as challenges or milestones, to make earning rewards more engaging and fun for customers.\n\n### Step 2: Engage on Social Media\n1. **User-Generated Content**: Encourage customers to share their experiences with your brand by featuring their posts or reviews on your pages. This can foster a sense of community and enhance engagement.\n2. **Scheduled Live Interactions**: Plan regular live Q&A sessions or AMAs (Ask Me Anything) to create real-time interaction and transparency with your audience.\n\n### Step 3:"
+            },
+            {
+                "step": 4,
+                "role": "planner",
+                "prompt": "You are a planner. Break problem into steps.",
+                "output": "### Step 3: Personalize Customer Experience\n1. **Data Analysis**: Utilize customer data to understand preferences and behaviors. Segment your audience based on their purchase history and preferences for personalized marketing efforts.\n2. **Tailored Communications**: Create customized emails and recommendations based on individual customer profiles to make them feel valued and understood.\n\n### Step 4: Enhance Customer Feedback Loop\n1. **Surveys and Feedback Forms**: Regularly collect customer feedback through surveys post-purchase or after support interactions. Use this data to improve products and services.\n2. **Follow-up Engagement**: Implement a system to follow up on feedback, showing customers that their opinions matter and lead to actionable changes.\n\n### Step 5: Create Exclusive Content\n1. **Members-Only Access**: Develop exclusive content or resources for loyalty program members, such as special guides, tutorials, or early access to new products.\n2. **Educational Webinars**: Host webinars or workshops that provide value to your customers"
+            },
+            {
+                "step": 5,
+                "role": "executor",
+                "prompt": "You are an executor. Execute the plan.",
+                "output": "### Step 3: Personalize Customer Experience\n\n1. **Data Analysis**:\n   - **Collect Data**: Gather customer data from CRM systems, purchase history, and website interactions.\n   - **Segment Audience**: Categorize customers into segments (e.g., frequent buyers, occasional users, high spenders) based on their preferences and behaviors.\n   - **Implement Tools**: Use analytics platforms (like Google Analytics or AI-driven tools) to visualize patterns and insights.\n\n2. **Tailored Communications**:\n   - **Customized Emails**: Design email campaigns with personalized subject lines and content based on individual purchase histories.\n   - **Product Recommendations**: Use algorithms to generate personalized product recommendations that appear on your website and in communications.\n   - **Dynamic Content**: Integrate dynamic content on your website that changes based on the customer’s past behavior and preferences.\n\n---\n\n### Step 4: Enhance Customer Feedback Loop\n\n1. **Surveys and Feedback Forms**:\n   - **Post"
+            },
+            {
+                "step": 6,
+                "role": "reviewer",
+                "prompt": "You are a reviewer. Suggest improvements.",
+                "output": "### Step 3: Personalize Customer Experience\n\n1. **Data Analysis**:\n   - **Collect Data**: Gather customer data from CRM systems, purchase history, and website interactions. Consider also integrating social media insights and customer service interactions for a 360-degree view of customer behavior.\n   - **Segment Audience**: Categorize customers into segments (e.g., frequent buyers, occasional users, high spenders) based on their preferences and behaviors. Ensure segments are dynamic and can evolve over time as customer habits change.\n   - **Implement Tools**: Use analytics platforms (like Google Analytics or AI-driven tools) to visualize patterns and insights. Explore emerging tools that utilize machine learning for deeper insights into customer behavior trends.\n\n2. **Tailored Communications**:\n   - **Customized Emails**: Design email campaigns with personalized subject lines and content based on individual purchase histories. Include time-sensitive offers or seasonal promotions to increase engagement.\n   - **Product Recommendations**: Use algorithms to generate personalized product recommendations"
+            }
+        ]
+    }
+]

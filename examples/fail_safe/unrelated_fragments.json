@@ -1,0 +1,17 @@
+[
+    {
+        "example": "fail_safe_unrelated_fragments",
+        "steps": [
+            {
+                "step": 1,
+                "prompt": "Answer one question.",
+                "output": "capital of france"
+            },
+            {
+                "step": 2,
+                "prompt": "Answer a different question.",
+                "output": "capital of germany"
+            }
+        ]
+    }
+]

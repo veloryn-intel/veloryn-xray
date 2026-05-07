@@ -1,0 +1,35 @@
+[
+  {
+    "example": "langchain_official_summarization_refinement",
+    "provider": "OpenAI",
+    "framework": "LangChain",
+    "model": "gpt-4o-mini",
+    "reference": "https://api.python.langchain.com/en/latest/langchain/chains/langchain.chains.combine_documents.refine.RefineDocumentsChain.html",
+    "steps": [
+      {
+        "step": 1,
+        "phase": "initial_summary",
+        "model": "gpt-4o-mini",
+        "output": "**Incident Review Note: Payments API Intermittent Timeouts**\n\n**Summary:** During peak traffic, the payments API encountered intermittent upstream timeouts. Although the implemented retry logic helped minimize user-visible failures, it resulted in an increased queue depth. Further analysis is needed to address the underlying issues and optimize performance during high-traffic periods."
+      },
+      {
+        "step": 2,
+        "phase": "refine_summary",
+        "model": "gpt-4o-mini",
+        "output": "**Incident Review Note: Payments API Intermittent Timeouts**\n\n**Summary:** During peak traffic, the payments API experienced intermittent upstream timeouts. While the implemented retry logic with exponential backoff for transient 5xx and timeout responses reduced user-visible failures, it led to increased queue depth. Permanent 4xx responses were logged without retry. Further analysis is required to address the underlying issues and optimize performance during high-traffic periods."
+      },
+      {
+        "step": 3,
+        "phase": "refine_summary",
+        "model": "gpt-4o-mini",
+        "output": "**Incident Review Note: Payments API Intermittent Timeouts**\n\n**Summary:** During peak traffic, the payments API experienced intermittent upstream timeouts. The implemented retry logic with exponential backoff for transient 5xx and timeout responses reduced user-visible failures but increased queue depth. Dead-letter handling captured requests that exceeded retry limits, while dashboards monitored queue depth, retry counts, and final failure rates. Permanent 4xx responses were logged without retry. Further analysis is needed to address underlying issues and optimize performance during high-traffic periods."
+      },
+      {
+        "step": 4,
+        "phase": "refine_summary",
+        "model": "gpt-4o-mini",
+        "output": "**Incident Review Note: Payments API Intermittent Timeouts**\n\n**Summary:** During peak traffic, the payments API experienced intermittent upstream timeouts. The implemented retry logic with exponential backoff for transient 5xx and timeout responses reduced user-visible failures but increased queue depth. Alerts for queue growth were added, and rollback procedures for disabling retries were documented to address persistent upstream instability. Dead-letter handling captured requests exceeding retry limits, while dashboards monitored queue depth, retry counts, and final failure rates. Permanent 4xx responses were logged without retry. Further analysis is needed to address underlying issues and optimize performance during high-traffic periods."
+      }
+    ]
+  }
+]

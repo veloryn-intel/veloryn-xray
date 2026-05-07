@@ -1,0 +1,16 @@
+[VERDICT]
+Execution should have stopped at Step 5.
+
+[WASTE]
+0% of execution happened after that.
+
+[WHY]
+Most value was captured early.
+
+[TIMELINE]
+Step 1 → Improving
+Step 2 → Improving
+Step 3 → Improving
+Step 4 → Improving
+Step 5 → Peak
+
