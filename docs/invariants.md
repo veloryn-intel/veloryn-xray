@@ -247,9 +247,9 @@ CLI flags must also preserve fail-safe isolation:
 
 ```bash
 python -m cli.main invalid.json
-python -m cli.main --analysis invalid.json
-python -m cli.main --debug invalid.json
-python -m cli.main --plot invalid.json
+python -m cli.main invalid.json --analysis
+python -m cli.main invalid.json --debug
+python -m cli.main invalid.json --plot
 ```
 
 All four commands should print only:
@@ -280,7 +280,7 @@ Run CLI examples:
 
 ```bash
 python -m cli.main trace.json
-python -m cli.main --analysis trace.json
-python -m cli.main --debug trace.json
-python -m cli.main --plot trace.json
+python -m cli.main trace.json --analysis
+python -m cli.main trace.json --debug
+python -m cli.main trace.json --plot
 ```
