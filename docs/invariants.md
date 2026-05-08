@@ -22,8 +22,8 @@ Expected:
 - `is_valid: false`
 - `failure_reason: low_continuity`
 - no `peak_step`
-- no `contributions`
 - no `timeline`
+- no `analysis`
 
 Reason:
 
@@ -96,29 +96,27 @@ Reason:
 - fewer than two outputs
 - no transition exists for execution analysis
 
-### Malformed Step
+### Malformed Structured Payload
 
 Input:
 
-```json
-[
-  {
-    "steps": [
-      {"step": 1},
-      {"step": 2, "output": "x"}
-    ]
-  }
-]
+```python
+{
+  "steps": [
+    {"step": 1},
+    {"step": 2, "output": "x"}
+  ]
+}
 ```
 
 Expected:
 
-- `is_valid: false`
-- `failure_reason: invalid_schema`
+- structured SDK validation raises `ValueError`
 
 Reason:
 
-- a step object lacks a valid string `output`
+- structured mode requires every step to contain a string `output`
+- schema invalidity is not fail-safe
 
 ## Must-Pass Fixtures
 
@@ -137,9 +135,8 @@ Expected:
 
 - `is_valid: true`
 - `peak_step: 2`
-- `waste_ratio: 0.0`
-- `contributions: [2.0, 2.0]`
-- timeline contains `Improving` then `Peak`
+- `waste_percentage: 0`
+- timeline contains `improving` then `peak`
 
 Reason:
 
@@ -162,8 +159,8 @@ Expected:
 
 - `is_valid: true`
 - `peak_step: 1`
-- `waste_ratio: 0.5`
-- timeline contains `Repeating`
+- `waste_percentage: 50`
+- timeline contains `peak` then `repeating`
 
 Reason:
 
@@ -188,12 +185,12 @@ Expected current behavior:
 
 - `is_valid: true`
 - `peak_step: 1`
-- `waste_ratio: 0.9091`
-- `contributions: [2.6, 2.0, 3.0, 2.0, 3.0]`
+- `waste_percentage: 91`
+- timeline contains `peak` followed by `declining`
 
 Reason:
 
-- this fixture documents current contribution, normalization, smoothing, and peak-selection behavior
+- this fixture documents current public execution analysis behavior for this trajectory
 - it is not a semantic assessment of usefulness
 
 ## Determinism Fixtures
@@ -246,10 +243,10 @@ assert "analysis" not in result
 CLI flags must also preserve fail-safe isolation:
 
 ```bash
-python -m cli.main invalid.json
-python -m cli.main invalid.json --analysis
-python -m cli.main invalid.json --debug
-python -m cli.main invalid.json --plot
+python -m cli.main examples/fail_safe/unrelated_fragments.json
+python -m cli.main examples/fail_safe/unrelated_fragments.json --analysis
+python -m cli.main examples/fail_safe/unrelated_fragments.json --debug
+python -m cli.main examples/fail_safe/unrelated_fragments.json --plot
 ```
 
 All four commands should print only:
@@ -279,8 +276,9 @@ npm run build
 Run CLI examples:
 
 ```bash
-python -m cli.main trace.json
-python -m cli.main trace.json --analysis
-python -m cli.main trace.json --debug
-python -m cli.main trace.json --plot
+python -m cli.main examples/retry_loops/retry_loop_trace.json
+python -m cli.main examples/retry_loops/retry_loop_trace.json --analysis
+python -m cli.main examples/retry_loops/retry_loop_trace.json --debug
+python -m cli.main examples/retry_loops/retry_loop_trace.json --plot
 ```
+
