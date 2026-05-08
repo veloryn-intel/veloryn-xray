@@ -62,7 +62,7 @@ Expected:
 
 - `is_valid is True`
 - `peak_step == 2`
-- `waste_ratio == 0.0`
+- `waste_percentage == 0`
 
 Repetition:
 
@@ -77,8 +77,8 @@ Expected:
 
 - `is_valid is True`
 - `peak_step == 1`
-- `waste_ratio == 0.5`
-- timeline includes `Repeating`
+- `waste_percentage == 50`
+- timeline includes `peak` then `repeating`
 
 Topic shift:
 
@@ -112,8 +112,8 @@ Expected:
 
 - `is_valid is True`
 - `peak_step == 1`
-- `waste_ratio == 0.9091`
-- `contributions == [2.6, 2.0, 3.0, 2.0, 3.0]`
+- `waste_percentage == 91`
+- timeline includes `peak` followed by `declining`
 
 ## Determinism Check
 
@@ -160,13 +160,13 @@ for field in [
 
 ## CLI Invalid Checks
 
-For an invalid JSON file:
+For an invalid execution fixture:
 
 ```bash
-python -m cli.main invalid.json
-python -m cli.main --analysis invalid.json
-python -m cli.main --debug invalid.json
-python -m cli.main --plot invalid.json
+python -m cli.main examples/fail_safe/unrelated_fragments.json
+python -m cli.main examples/fail_safe/unrelated_fragments.json --analysis
+python -m cli.main examples/fail_safe/unrelated_fragments.json --debug
+python -m cli.main examples/fail_safe/unrelated_fragments.json --plot
 ```
 
 Expected for all commands:
