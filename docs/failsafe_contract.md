@@ -54,10 +54,10 @@ This does not appear to be a single evolving task.
 This applies to:
 
 ```bash
-python -m cli.main invalid.json
-python -m cli.main invalid.json --analysis
-python -m cli.main invalid.json --debug
-python -m cli.main invalid.json --plot
+python -m cli.main examples/fail_safe/unrelated_fragments.json
+python -m cli.main examples/fail_safe/unrelated_fragments.json --analysis
+python -m cli.main examples/fail_safe/unrelated_fragments.json --debug
+python -m cli.main examples/fail_safe/unrelated_fragments.json --plot
 ```
 
 `--plot` does not save a plot for invalid executions.
@@ -88,7 +88,8 @@ analyze_structured({"steps": [{"output": None}, {"output": "b"}]})
 
 raises `ValueError`.
 
-Malformed task/step objects inside a list can return fail-safe with `invalid_schema`.
+Structured mode uses strict schema validation. 
+Invalid structured payloads such as missing `output`, non-string `output`, or malformed `steps` entries raise `ValueError` rather than returning fail-safe.
 
 Execution invalidity returns fail-safe.
 
