@@ -43,7 +43,8 @@ print(result.to_dict())
 
 ## What It Does
 
-The callback captures assistant outputs from LangChain's `on_llm_end` lifecycle hook and stores them in sequential order. It does not capture prompts, tool inputs, memory state, credentials, or provider metadata.
+The callback captures assistant outputs from LangChain's `on_llm_end` lifecycle hook and stores them in sequential order.   
+It does not capture prompts, tool inputs, memory state, credentials, or provider metadata.
 
 ```json
 {
