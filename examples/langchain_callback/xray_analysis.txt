@@ -1,0 +1,16 @@
+[VERDICT]
+Execution should have stopped at Step 1.
+
+[WASTE]
+85% of execution happened after that.
+
+[WHY]
+Later steps mostly repeated earlier output.
+
+[TIMELINE]
+Step 1 → Peak
+Step 2 → Repeating
+Step 3 → Repeating
+Step 4 → Repeating
+Step 5 → Repeating
+
