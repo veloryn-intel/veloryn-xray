@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Node
+node_modules/
+.vite/
+
+# Logs / temp
+*.log
+tmp*/
+
+# IDE
+.vscode/
+.idea/
+
+# Analysis outputs
+analysis/
+tests/outputs/
+
+# Cache
+.pytest_cache/
+pattern_extractor/_tiktoken_cache/
+
+# Local experimental directories
+release/github_upload/
+.crewai-example-site/
+.crewai-example-venv/
+.crewai-storage/
+.audit_compare_probe/
+cleantest/
+
+# Local data
+data/*.json
