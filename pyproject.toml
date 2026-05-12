@@ -31,6 +31,9 @@ langchain = [
     "langchain-core",
     "langchain-openai",
 ]
+crewai = [
+    "crewai",
+]
 
 [project.scripts]
 xray = "veloryn.xray.cli:main"
