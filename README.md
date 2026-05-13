@@ -217,6 +217,92 @@ else:
 ```
 
 ---
+## 3-Minute Replay
+
+Capture a workflow trace through a LangChain callback:
+
+```python
+from veloryn.xray.langchain import XRayCallbackHandler
+
+handler = XRayCallbackHandler()
+
+chain.invoke(
+    {"topic": "Queue-based retry handling for flaky infrastructure APIs"},
+    config={"callbacks": [handler]},
+)
+
+handler.save_trace("callback_trace.json")
+```
+
+Install the optional LangChain dependencies for local repository development:
+
+```bash
+pip install -e ".[langchain]"
+```
+
+The LangChain optional extra will be included in a future PyPI release.
+
+Replay the captured trace through X-Ray:
+
+```bash
+python -m cli.main callback_trace.json
+```
+
+Example replay output:
+
+```text
+[VERDICT]
+Execution should have stopped at Step 1.
+
+[WASTE]
+85% of execution happened after that.
+
+[WHY]
+Later steps mostly repeated earlier output.
+
+[TIMELINE]
+Step 1 → Peak
+Step 2 → Repeating
+Step 3 → Repeating
+Step 4 → Repeating
+Step 5 → Repeating
+```
+
+Replay remains deterministic for the same trace and algorithm version.
+
+See also:
+
+- `examples/langchain_callback/`
+- `examples/crewai_callback/`
+
+## Local UI
+
+Run the local replay inspection UI:
+
+```bash
+npm install
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+Load a replay trace such as:
+
+- `examples/langchain_callback/callback_trace.json`
+- `examples/crewai_callback/callback_trace.json`
+
+The UI visualizes:
+
+- contribution progression
+- redundancy growth
+- execution timeline
+- peak contribution step
+  
+---
 
 ## Why Lexical Instead of Semantic
 
