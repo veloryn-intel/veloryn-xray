@@ -48,6 +48,8 @@ The committed fixtures replay locally without providers. Some example scripts al
 - [multi_agent](./multi_agent/README.md)
 - [fail_safe](./fail_safe/README.md)
 - [sdk](./sdk/README.md)
+- [langchain_callback](./langchain_callback/README.md)
+- [crewai_callback](./crewai_callback/README.md)
 
 ## Provider Matrix
 
@@ -78,6 +80,39 @@ Run a live provider-backed LangChain capture and refresh its committed artifacts
 python examples/langchain_official/refinement_chain/langchain_official_example.py
 ```
 
+---
+## Quick Start
+
+
+
+
+## Execution Patterns Covered
+
+These examples include replay analysis for:
+
+- retry loops
+- iterative reformulation
+- multi-agent redundancy
+- stagnation patterns
+- trajectory collapse
+- structural contribution decay
+- execution continuation analysis
+- fail-safe execution rejection
+- execution validity enforcement
+
+
+## Framework Integrations
+
+Examples currently include:  
+
+- LangChain callback replay
+- CrewAI callback replay
+- multi-agent execution analysis
+- deterministic execution replay
+- offline trace inspection
+
+---
+
 ## Why The Examples Are Minimal
 
 X-Ray analyzes execution continuity, contribution collapse, and invalid-state isolation.
@@ -90,3 +125,4 @@ It does not:
 - score final-answer quality
 
 The examples keep prompts, outputs, and ordering visible so the execution structure is easy to inspect.
+
