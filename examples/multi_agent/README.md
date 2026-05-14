@@ -1,40 +1,75 @@
-# Multi-Agent Redundancy Example
+# Multi-Agent Redundancy Replay
 
-This example replays a real multi-agent-style workflow trace generated with `gpt-4o-mini`.
+Replay a stored multi-agent execution trace through X-Ray.
 
-Script:
+The fixture contains a provider-backed multi-agent workflow trace captured from a real multi-step execution.
+
+## Replay
+
+CLI replay:
+
+```bash
+python -m cli.main examples/multi_agent/multi_agent_trace.json
+```
+
+SDK replay:
 
 ```bash
 python examples/multi_agent/multi_agent_redundancy.py
 ```
 
-Trace:
+## Execution Pattern
 
-- [multi_agent_trace.json](./multi_agent_trace.json)
-
-## What It Shows
+The trace demonstrates a coordination-heavy execution pattern commonly observed in multi-agent workflows:
 
 - planner / executor / reviewer role cycling
-- a productive climb before the peak
-- later steps that continue the loop without matching earlier contribution
+- continued local task completion
+- expanding coordination overhead
+- increasing detail without proportional execution progression
+- declining marginal contribution across later stages
 
-## Expected X-Ray Behavior
+This execution shape commonly appears in:
 
-- `is_valid: true`
-- `peak_step: 3`
-- `waste_ratio: 0.4988`
-- timeline labels:
-  - `improving`
-  - `improving`
-  - `peak`
-  - `declining`
-  - `declining`
-  - `declining`
+- consensus-style orchestration
+- reviewer refinement chains
+- planner/executor loops
+- recursive agent coordination workflows
+- long-running agent systems
 
-Expected verdict:
+Example replay verdict:
 
 ```text
+[VERDICT]
 Execution should have stopped at Step 3.
+
+[WASTE]
+50% of execution happened after that.
+
+[TIMELINE]
+Step 1 → Improving
+Step 2 → Improving
+Step 3 → Peak
+Step 4 → Declining
+Step 5 → Declining
+Step 6 → Declining
 ```
 
-This example demonstrates the core point: more agents does not automatically mean more contribution.
+## CLI Replay Output
+
+![CLI Replay](./multi-agent-cli-output.png)
+
+## UI Replay Output
+
+![UI Replay](./multi-agent-ui-output.png)
+
+The local replay UI visualizes execution trajectories, contribution progression, redundancy growth, and peak-step transitions from deterministic replay traces.
+
+## Trace Artifacts
+
+- `multi_agent_trace.json`
+
+## Related Examples
+
+- `examples/retry_loops/`
+- `examples/langchain_callback/`
+- `examples/crewai_callback/`
