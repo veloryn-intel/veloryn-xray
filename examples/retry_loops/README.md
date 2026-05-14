@@ -1,52 +1,87 @@
-# Retry Loop Example
+# Retry Loop Replay
 
-This example replays a real retry workflow trace generated with `gpt-4o-mini`.
+Replay a stored retry-loop execution trace through X-Ray.
 
-The current fixture can be regenerated through [generate_retry_loop_trace.py](./generate_retry_loop_trace.py) and stores its raw provider-backed lineage in:
+The fixture contains a provider-backed retry workflow trace captured from a real multi-step execution.
 
-- [retry_loop_trace.json](./retry_loop_trace.json)
-- [retry_loop_live_raw.json](./retry_loop_live_raw.json)
+## Replay
 
-Script:
+CLI replay:
+
+```bash
+python -m cli.main examples/retry_loops/retry_loop_trace.json
+```
+
+SDK replay:
 
 ```bash
 python examples/retry_loops/retry_loop.py
 ```
 
-Optional live-capture refresh:
+Optional live-capture regeneration:
 
 ```bash
 python examples/retry_loops/generate_retry_loop_trace.py
 ```
 
-Optional offline verification:
+Optional fixture verification:
 
 ```bash
 python examples/retry_loops/verify_retry_loop_example.py
 ```
 
-## What It Shows
+## Execution Pattern
 
-- repeated retries on the same failing task
-- structural repetition after an early useful step
-- waste accumulation after the peak
+The trace demonstrates a retry-collapse pattern commonly observed in multi-step LLM workflows:
 
-## Current Observed X-Ray Behavior
+- retries continue
+- reformulations vary slightly
+- execution remains locally coherent
+- token usage increases
+- marginal contribution declines
 
-- `is_valid: true`
-- `peak_step: 2`
-- CLI waste output: `68%`
-- timeline labels:
-  - `improving`
-  - `peak`
-  - `repeating`
-  - `repeating`
-  - `declining`
+This execution shape commonly appears in:
 
-Current verdict:
+- retry loops
+- recursive execution chains
+- repeated tool-call workflows
+- iterative refinement systems
+- long-running agent orchestration
+
+Example replay verdict:
 
 ```text
+[VERDICT]
 Execution should have stopped at Step 2.
+
+[WASTE]
+68% of execution happened after peak contribution.
+
+[TIMELINE]
+Step 1 → Improving
+Step 2 → Peak
+Step 3 → Repeating
+Step 4 → Repeating
+Step 5 → Declining
 ```
 
-This is a strong collapse example: retries continue, but contribution no longer grows.
+## CLI Replay Output
+
+![CLI Replay](./retry-loops-cli-output.png)
+
+## UI Replay Output
+
+![UI Replay](./retry-loops-ui-output.png)
+
+The local replay UI visualizes execution trajectories, contribution progression, redundancy growth, and peak-step transitions from deterministic replay traces.
+
+## Trace Artifacts
+
+- `retry_loop_trace.json`
+- `retry_loop_live_raw.json`
+
+## Related Examples
+
+- `examples/langchain_callback/`
+- `examples/crewai_callback/`
+- `examples/iterative_refinement/`
