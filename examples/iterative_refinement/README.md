@@ -1,52 +1,89 @@
-# Iterative Refinement Example
+# Iterative Refinement Replay
 
-This example replays a real OpenAI refinement trace generated with `gpt-4o`.
+Replay a stored iterative-refinement execution trace through X-Ray.
 
-It demonstrates a multi-step refinement workflow where each step expands or modifies the previous output.
+The fixture contains a provider-backed refinement workflow trace captured from a real multi-step execution.
 
-The current fixture can be regenerated through [generate_iterative_refinement_trace.py](./generate_iterative_refinement_trace.py) and stores its raw provider-backed lineage in:
+## Replay
 
-- [iterative_refinement_trace.json](./iterative_refinement_trace.json)
-- [iterative_refinement_live_raw.json](./iterative_refinement_live_raw.json)
+CLI replay:
 
-Script:
+```bash
+python -m cli.main examples/iterative_refinement/iterative_refinement_trace.json
+```
+
+SDK replay:
 
 ```bash
 python examples/iterative_refinement/iterative_refinement.py
 ```
 
-Optional live-capture refresh:
+Optional live-capture regeneration:
 
 ```bash
 python examples/iterative_refinement/generate_iterative_refinement_trace.py
 ```
 
-Optional offline verification:
+Optional fixture verification:
 
 ```bash
 python examples/iterative_refinement/verify_iterative_refinement_example.py
 ```
 
-## What It Shows
+## Execution Pattern
 
-- iterative refinement on one evolving topic
-- a productive build-up before the peak
-- later expansion that adds detail more than new structure
+The trace demonstrates a refinement-collapse pattern commonly observed in iterative LLM workflows:
 
-## Current Observed X-Ray Behavior
+- iterative expansion on one evolving topic
+- continued local coherence across refinement stages
+- increasing detail without proportional structural progression
+- repeated reformulation after peak contribution
+- declining marginal contribution across later stages
 
-- `is_valid: true`
-- `peak_step: 1`
-- CLI waste output: `70%`
-- timeline labels:
-  - `peak`
-  - `declining`
-  - `declining`
-  - `declining`
-  - `declining`
+This execution shape commonly appears in:
 
-Current verdict:
+- iterative refinement chains
+- revision-style prompting workflows
+- recursive expansion pipelines
+- critique/rewrite systems
+- long-running refinement loops
+
+Example replay verdict:
 
 ```text
+[VERDICT]
 Execution should have stopped at Step 1.
+
+[WASTE]
+70% of execution happened after that.
+
+[TIMELINE]
+Step 1 → Peak
+Step 2 → Declining
+Step 3 → Declining
+Step 4 → Declining
+Step 5 → Declining
 ```
+
+## CLI Replay Output
+
+![CLI Replay](./iterative-refinement-cli-output.png)
+
+## UI Replay Output
+
+![UI Replay](./iterative-refinement.png)
+
+The local replay UI visualizes execution trajectories, contribution progression, redundancy growth, and peak-step transitions from deterministic replay traces.
+
+## Trace Artifacts
+
+* `iterative_refinement_trace.json`
+* `iterative_refinement_live_raw.json`
+
+## Related Examples
+
+* `examples/retry_loops/`
+* `examples/multi_agent/`
+* `examples/langchain_callback/`
+* `examples/crewai_callback/`
+
