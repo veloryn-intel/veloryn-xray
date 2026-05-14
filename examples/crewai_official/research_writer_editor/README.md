@@ -1,12 +1,18 @@
 # Research Writer Editor
 
-This example demonstrates X-Ray analyzing execution trajectories produced by a multi-agent CrewAI workflow.
+Replay a sequential multi-agent CrewAI workflow through X-Ray.  
 
-Workflow shape:
+This example analyzes execution trajectories produced by a provider-backed CrewAI orchestration workflow captured from a real execution.
 
-- Researcher gathers operational material
-- Writer drafts a technical explainer
-- Editor revises the draft for clarity and structure
+## Execution Structure
+
+The workflow replays a sequential coordination pattern consisting of:
+
+- research expansion
+- drafting synthesis
+- editorial refinement
+
+The trace captures how structural contribution evolves across later coordination phases.
 
 CrewAI primitives used:
 
@@ -24,15 +30,19 @@ Model:
 - default: `gpt-4o-mini`
 - override with `XRAY_CREWAI_MODEL`
 
-Requirements:
+## Requirements
 
 ```bash
 pip install crewai openai
 ```
 
-This example was verified in a Python 3.12 environment. Any equivalent environment with CrewAI and OpenAI installed should work.
+This example was verified in a Python 3.12 environment.   
+Any equivalent environment with CrewAI and OpenAI installed should work.
 
-Run:
+
+## Replay
+
+Run the workflow:
 
 ```bash
 python examples/crewai_official/research_writer_editor/crewai_example.py
@@ -46,17 +56,20 @@ Replay through the CLI:
 python -m cli.main examples/crewai_official/research_writer_editor/captured_trace.json
 ```
 
-Validate JSON:
+Optional JSON validation:
 
 ```bash
 python -m json.tool examples/crewai_official/research_writer_editor/captured_trace.json
 ```
 
-What X-Ray demonstrates:
+## Execution Pattern
 
-- how structural contribution evolves across sequential multi-agent stages
-- whether a research -> draft -> edit crew keeps adding structure or begins to plateau
-- deterministic replay once the committed trace is saved
+The replay demonstrates:
+
+- structural contribution progression across sequential agent coordination
+- refinement after peak contribution
+- coordination continuity despite declining marginal contribution
+- deterministic replay once the trace is committed
 
 Committed artifacts:
 
@@ -64,12 +77,14 @@ Committed artifacts:
 - [xray_analysis.txt](./xray_analysis.txt)
 - [ui_example.png](./ui_example.png)
 
-Current observed X-Ray output for the committed fixture:
+Replay characteristics for the committed fixture:
 
 - `peak_step = 2`
 - `waste = 41%`
-- the writer stage is the productive peak and the editor stage mostly refines phrasing
+- the drafting stage is the productive peak
+- the editor stage primarily expands existing material
 
 Note:
 
-Live provider generation may vary over time. The committed replay trace remains deterministic once saved.
+Live provider generation may vary over time.   
+The committed replay trace remains deterministic once saved.
