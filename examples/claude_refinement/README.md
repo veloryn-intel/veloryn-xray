@@ -1,50 +1,89 @@
-# Claude Refinement Example
+# Claude Refinement Replay
 
-This example replays a real Claude refinement trace generated with `claude-sonnet-4-5`.
+Replay a stored Claude refinement execution trace through X-Ray.
 
-The current fixture was freshly captured through [generate_claude_example_trace.py](./generate_claude_example_trace.py) and saved from the live Anthropic API into:
+The fixture contains a provider-backed refinement workflow trace captured from a real multi-step Anthropic execution.
 
-- [claude_refinement_trace.json](./claude_refinement_trace.json)
-- [claude_refinement_live_raw.json](./claude_refinement_live_raw.json)
+## Replay
 
-Script:
+CLI replay:
+
+```bash
+python -m cli.main examples/claude_refinement/claude_refinement_trace.json
+```
+
+SDK replay:
 
 ```bash
 python examples/claude_refinement/claude_refinement.py
 ```
 
-Optional live-capture refresh:
+Optional live-capture regeneration:
 
 ```bash
 python examples/claude_refinement/generate_claude_example_trace.py
 ```
 
-Optional offline verification:
+Optional fixture verification:
 
 ```bash
 python examples/claude_refinement/verify_claude_example.py
 ```
 
-## What It Shows
+## Execution Pattern
 
-- an immediate high-value first response
-- later expansion that adds detail but little new structure
-- repeated continuation after the peak
+The trace demonstrates a refinement-collapse pattern commonly observed in iterative LLM workflows:
 
-## Current Observed X-Ray Behavior
+* an initially high-contribution response
+* continued local coherence across later stages
+* expanding detail without proportional structural progression
+* repeated continuation after peak contribution
+* declining marginal contribution across later refinement steps
 
-- `is_valid: true`
-- `peak_step: 2`
-- CLI waste output: `63%`
-- timeline labels:
-  - `improving`
-  - `peak`
-  - `repeating`
-  - `repeating`
-  - `repeating`
+This execution shape commonly appears in:
 
-Expected verdict:
+* iterative refinement workflows
+* recursive continuation chains
+* critique/revision systems
+* expansion-style prompting pipelines
+* long-running refinement loops
+
+Example replay verdict:
 
 ```text
+[VERDICT]
 Execution should have stopped at Step 2.
+
+[WASTE]
+63% of execution happened after that.
+
+[TIMELINE]
+Step 1 → Improving
+Step 2 → Peak
+Step 3 → Repeating
+Step 4 → Repeating
+Step 5 → Repeating
 ```
+
+## CLI Replay Output
+
+![CLI Replay](./claude-refinement-cli-output.png)
+
+## UI Replay Output
+
+![UI Replay](./claude-refinement-ui-output.png)
+
+The local replay UI visualizes execution trajectories, contribution progression, redundancy growth, and peak-step transitions from deterministic replay traces.
+
+## Trace Artifacts
+
+* `claude_refinement_trace.json`
+* `claude_refinement_live_raw.json`
+
+## Related Examples
+
+* `examples/iterative_refinement/`
+* `examples/retry_loops/`
+* `examples/multi_agent/`
+* `examples/langchain_callback/`
+* `examples/crewai_callback/`
