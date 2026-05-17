@@ -52,11 +52,11 @@ Step 5 → Declining
 
 ## CLI Replay Output
 
-![CLI Replay](./tool-intent-loop-cli-output.png)
+![CLI Replay](./tool-intent-cli-output.png)
 
 ## UI Replay Output
 
-![UI Replay](./tool-intent-loop-ui-output.png)
+![UI Replay](./tool-intent-ui-output.png)
 
 The local replay UI visualizes execution trajectories, contribution progression, redundancy growth, and peak-step transitions from deterministic replay traces.
 
